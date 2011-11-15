@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>OpenLayers Layer Lens Example</title>
+
+    <link rel="stylesheet" href="http://openlayers.org/dev/theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="http://openlayers.org/dev/examples/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/layer-lens.css" type="text/css">
+
+    <script src="http://openlayers.org/dev/OpenLayers.js"></script>
+    <script src="../lib/OpenLayers/Control/LayerLens.js"></script>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        var map;
+        function init() {
+            map = new OpenLayers.Map('map', {
+                layers: [new OpenLayers.Layer.Google("satellite", {type: google.maps.MapTypeId.SATELLITE})]
+            });
+            map.addControl(new OpenLayers.Control.LayerLens(new OpenLayers.Layer.OSM()));
+            map.zoomTo(2);
+        }
+    </script>
+  </head>
+  <body onload="init()">
+    <h1 id="title">Layer Lens Example</h1>
+
+    <div id="tags"></div>
+
+    <p id="shortdesc"></p>
+
+    <div id="map" class="smallmap"></div>
+    <div id="docs"></div>
+  </body>
+</html>
