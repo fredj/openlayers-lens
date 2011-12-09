@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="http://openlayers.org/dev/theme/default/style.css" type="text/css">
     <link rel="stylesheet" href="http://openlayers.org/dev/examples/style.css" type="text/css">
     <link rel="stylesheet" href="../css/layer-lens.css" type="text/css">
+    <style type="text/css">
+      .olControlLayerLens {
+          border: 1px solid rgba(0, 0, 0, .35);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, .35);
+      }
+      .boxShadow {
+          box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .35);
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+      }
+    </style>
 
     <script src="http://openlayers.org/dev/OpenLayers.js"></script>
     <script src="../lib/OpenLayers/Control/LayerLens.js"></script>
@@ -21,6 +33,7 @@
             map = new OpenLayers.Map('map', {
                 layers: [new OpenLayers.Layer.Google("satellite", {type: google.maps.MapTypeId.SATELLITE})]
             });
+            map.addControl(new OpenLayers.Control({displayClass: 'boxShadow'}));
             map.addControl(new OpenLayers.Control.LayerLens(new OpenLayers.Layer.OSM()));
             map.zoomTo(2);
         }
