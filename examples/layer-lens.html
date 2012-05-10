@@ -13,27 +13,28 @@
     <style type="text/css">
       .olControlLayerLens {
           border: 1px solid rgba(0, 0, 0, .35);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, .35);
-      }
-      .boxShadow {
-          box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .35);
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
       }
     </style>
 
     <script src="http://openlayers.org/dev/OpenLayers.js"></script>
     <script src="../lib/OpenLayers/Control/LayerLens.js"></script>
 
-    <script src="http://maps.googleapis.com/maps/api/js?v=3.6&amp;sensor=false"></script>
     <script type="text/javascript">
         var map;
         function init() {
             map = new OpenLayers.Map('map', {
-                layers: [new OpenLayers.Layer.Google("satellite", {type: google.maps.MapTypeId.SATELLITE})]
+                layers: [
+                    new OpenLayers.Layer.OSM("MapBox Streets", [
+                        'http://a.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png',
+                        'http://b.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png',
+                        'http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png',
+                        'http://d.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png'
+                    ], {
+                        numZoomLevels: 17,
+                        attribution: "<a href='http://mapbox.com/about/maps'>Terms &amp; Feedback</a>"
+                    })
+                ]
             });
-            map.addControl(new OpenLayers.Control({displayClass: 'boxShadow'}));
             map.addControl(new OpenLayers.Control.LayerLens(new OpenLayers.Layer.OSM()));
             map.zoomTo(2);
         }
