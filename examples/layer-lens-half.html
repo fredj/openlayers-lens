@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>OpenLayers Layer Lens Example</title>
+
+    <link rel="stylesheet" href="http://openlayers.org/dev/theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="http://openlayers.org/dev/examples/style.css" type="text/css">
+    <style type="text/css">
+      .olControlLayerLens {
+          width: 50%;
+          height: 100%;
+          right: 0;
+      }
+      .smallmap {
+          width: 100%;
+          height: 512px;
+      }
+    </style>
+
+    <script src="http://openlayers.org/dev/OpenLayers.js"></script>
+    <script src="../lib/OpenLayers/Control/LayerLens.js"></script>
+
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.6&amp;sensor=false"></script>
+    <script type="text/javascript">
+        var map;
+        function init() {
+            map = new OpenLayers.Map('map', {
+                layers: [new OpenLayers.Layer.Google("satellite", {type: google.maps.MapTypeId.SATELLITE})]
+            });
+            map.addControl(new OpenLayers.Control.LayerLens(new OpenLayers.Layer.OSM(), {draggable: false}));
+            map.zoomTo(2);
+        }
+    </script>
+  </head>
+  <body onload="init()">
+    <h1 id="title">Layer Lens Example</h1>
+
+    <a href="https://github.com/fredj/openlayers-lens">
+      <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+    </a>
+    <div id="tags"></div>
+
+    <p id="shortdesc"></p>
+
+    <div id="map" class="smallmap"></div>
+    <div id="docs"></div>
+  </body>
+</html>
